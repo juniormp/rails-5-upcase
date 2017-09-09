@@ -1,8 +1,17 @@
 <h1>Dashboard</h1>
 
 <%= form_for @shout do |form| %>
-  <%= form.text_field :body, placeholder: "shout here!", require: true %>
-  <%= form.submit "Shout !" %>
+  <%= form.fields_for :content do |content_form| %>
+    <%= content_form.text_field :body, placeholder: "shout here!", require: true %>
+    <%= content_form.submit "Shout !" %>
+  <% end %>
+<% end %>
+
+<%= form_for @shout do |form| %>
+  <%= form.fields_for :content do |content_form| %>
+    <%= content_form.file_field :image, require: true %>
+    <%= content_form.submit "Shout !" %>
+  <% end %>
 <% end %>
 
 <%= render @shouts %>
